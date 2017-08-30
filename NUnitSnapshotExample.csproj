@@ -48,14 +48,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JsonSerializer.cs" />
     <Compile Include="Matches.cs" />
     <Compile Include="MyComplexClass.cs" />
     <Compile Include="MyComplexClassTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SnapshotCache.cs" />
     <Compile Include="SnapshotConstraint.cs" />
+    <Compile Include="SnapshotConstraintExtensions.cs" />
+    <Compile Include="SnapshotSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".snapshots\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

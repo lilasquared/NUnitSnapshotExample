@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace NUnitSnapshotExample
 {
@@ -21,9 +20,7 @@ namespace NUnitSnapshotExample
         {
             var myComplexClass = new MyComplexClass();
 
-            var snapshot = JsonConvert.SerializeObject(myComplexClass, Formatting.Indented);
-
-            Assert.That(snapshot, Matches.Snapshot);
+            Assert.That(myComplexClass, Matches.Snapshot.Json());
         }
 
         [Test]
