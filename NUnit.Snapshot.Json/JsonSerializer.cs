@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace NUnitSnapshotExample
+namespace NUnit.Snapshot.Json
 {
     public class JsonSerializer : ISnapshotSerializer
     {

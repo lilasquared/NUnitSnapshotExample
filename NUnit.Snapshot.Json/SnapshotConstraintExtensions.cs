@@ -1,8 +1,8 @@
-namespace NUnitSnapshotExample
+namespace NUnit.Snapshot.Json
 {
     public static class SnapshotConstraintExtensions
     {
-        public static SnapshotConstraint Json(this SnapshotConstraint constraint)
+        public static SnapshotConstraint AsJson(this SnapshotConstraint constraint)
         {
             return constraint.WithSerializer(JsonSerializer.Default);
         }

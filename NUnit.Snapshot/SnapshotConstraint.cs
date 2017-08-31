@@ -1,21 +1,19 @@
 ﻿using NUnit.Framework.Constraints;
 
-namespace NUnitSnapshotExample
+namespace NUnit.Snapshot
 {
     public class SnapshotConstraint : Constraint
     {
         private ISnapshotSerializer _snapshotSerializer;
         private ISnapshotCache _snapshotCache;
 
-        public SnapshotConstraint() : this (SnapshotSerializer.Default, SnapshotCache.Default)
-        {
-            
-        }
+        public SnapshotConstraint() 
+            : this (SnapshotSerializer.Default, SnapshotCache.Default) { }
 
         public SnapshotConstraint(ISnapshotSerializer serializer, ISnapshotCache cache)
         {
-            _snapshotSerializer = serializer;
-            _snapshotCache = cache;
+            WithSerializer(serializer);
+            WithCache(cache);
         }
 
         public SnapshotConstraint WithSerializer(ISnapshotSerializer serializer)
@@ -30,17 +28,18 @@ namespace NUnitSnapshotExample
             return this;
         }
 
-        private readonly NUnitEqualityComparer _comparer = NUnitEqualityComparer.Default;
-        private Tolerance _tolerance = Tolerance.Default;
-
         public override ConstraintResult ApplyTo<TActual>(TActual actual)
         {
             var newSnapshot = _snapshotSerializer.Serialize(actual);
-            
 
             var snapshot = _snapshotCache.GetOrSaveSnapshot(newSnapshot);
 
-            return new EqualConstraintResult(new EqualConstraint(snapshot), newSnapshot, _comparer.AreEqual(snapshot, newSnapshot, ref _tolerance));
+            if (newSnapshot == snapshot)
+            {
+                return new ConstraintResult(this, actual, ConstraintStatus.Success);
+            }
+
+            return new ConstraintResult(this, actual, ConstraintStatus.Failure);
         }
     }
 }

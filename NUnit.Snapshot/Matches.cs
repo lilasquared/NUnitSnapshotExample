@@ -1,4 +1,4 @@
-namespace NUnitSnapshotExample
+namespace NUnit.Snapshot
 {
     public static class Matches
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace NUnitSnapshotExample
+namespace NUnit.Snapshot
 {
     public interface ISnapshotSerializer
     {
